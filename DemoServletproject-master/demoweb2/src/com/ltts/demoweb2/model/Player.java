@@ -5,18 +5,18 @@ public class Player {
 	private int playerId;
 	private String playerName;
 	private String country;
+	String sDate1;
 	
 	
-	public Player() {
-		super();
-	}
-	
-	public Player(int playerId, String playerName, String country) {
+	public Player(int playerId, String playerName, String country, String sDate1) {
 		super();
 		this.playerId = playerId;
 		this.playerName = playerName;
 		this.country = country;
+		this.sDate1 = sDate1;
 	}
+
+
 	public int getPlayerId() {
 		return playerId;
 	}
@@ -36,10 +36,19 @@ public class Player {
 		this.country = country;
 	}
 
-	@Override
-	public String toString() {
-		return "Player playerId=" + playerId + ", playerName=" + playerName + ", country=" + country ;
+
+	public String getsDate1() {
+		return sDate1;
 	}
+
+
+	public void setsDate1(String sDate1) {
+		this.sDate1 = sDate1;
+	}
+	
+	
+	
+	
 	
 	
 	

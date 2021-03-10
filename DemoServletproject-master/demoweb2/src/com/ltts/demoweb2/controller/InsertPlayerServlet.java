@@ -1,6 +1,7 @@
 package com.ltts.demoweb2.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,10 +40,11 @@ public class InsertPlayerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		int no=Integer.parseInt(request.getParameter("pno"));
-		String name=request.getParameter("pname");
-		String country=request.getParameter("pcountry");
-		Player p=new Player(no,name,country);
+		int no=Integer.parseInt(request.getParameter("playerId"));
+		String name=request.getParameter("playerName");
+		String country=request.getParameter("country");
+		String date1=request.getParameter(" sDate1");
+		Player p=new Player(no, name, country, date1);
 		System.out.println("Inside Servlet: "+p);
 		PlayerDao pd=new PlayerDao();
 		boolean b=false;
