@@ -1,9 +1,6 @@
 package com.ltts.demoweb2.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ltts.demoweb2.dao.PlayerDao;
+import com.ltts.demoweb2.dao.TeamDao;
 import com.ltts.demoweb2.model.Player;
+import com.ltts.demoweb2.model.Team;
 
 /**
- * Servlet implementation class InsertPlayerServlet
+ * Servlet implementation class InsertTeamServlet
  */
-@WebServlet("/InsertPlayerServlet")
-public class InsertPlayerServlet extends HttpServlet {
+@WebServlet("/InsertTeamServlet")
+public class InsertTeamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertPlayerServlet() {
+    public InsertTeamServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,31 +41,22 @@ public class InsertPlayerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		PrintWriter out = response.getWriter();  
-		int no=Integer.parseInt(request.getParameter("playerId"));
-		String name=request.getParameter("playerName");
-		String country=request.getParameter("country");
-		String date1=request.getParameter("sDate1");
-		Player p=new Player(no, name, country, date1);
-		System.out.println("Inside Servlet: "+p);
-		PlayerDao pd=new PlayerDao();
+		int no=Integer.parseInt(request.getParameter("teamId"));
+		String name=request.getParameter("teamname");
+		String ownerName=request.getParameter("ownerName");
+		String coachName=request.getParameter("coachName");
+		int playerId=Integer.parseInt(request.getParameter("playerId"));
+		Team t= new Team(no,name,ownerName,coachName,playerId);
+		System.out.println("Inside Servlet: "+t);
+		TeamDao td=new TeamDao();
 		boolean b=false;
-		RequestDispatcher rd=null;
 		try {
-			b=pd.insertPlayer(p); // Control TRanfers to Dao file
+			b=td.insertTeam(t); // Control TRanfers to Dao file
 			System.out.println("Successfully Inserted...");
-			rd=request.getRequestDispatcher("success.html");
-			rd.forward(request, response);
-			//System.out.println("Successfully Inserted...");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			out.write("Already Player id Used: "+e);
-			rd=request.getRequestDispatcher("addplayer.html");
-			rd.include(request, response);
 			e.printStackTrace();
 		}
-		
 	}
 
-	
 }

@@ -8,40 +8,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ltts.demoweb2.configure.MyConnection;
-import com.ltts.demoweb2.model.Player;
+import com.ltts.demoweb2.model.Auction;
 
-
-public class PlayerDao {
+public class auctionDao {
 	
-	public boolean insertPlayer(Player p) throws Exception {
+	public boolean insertAuction(Auction p) throws Exception {
 		//fill your code
 		Connection mc=MyConnection.getConnection(); // TRanfers control to another 
-		PreparedStatement ps=mc.prepareStatement("insert into web_player values(?,?,?,?)");
-		ps.setInt(1, p.getPlayerId());
-		ps.setString(2, p.getPlayerName());
-		ps.setString(3, p.getCountry());
-		ps.setString(4, p.getsDate1());
-
-		return ps.execute();
-		//return false;
-
+		PreparedStatement ps=mc.prepareStatement("insert into auction values(?,?,?,?)");
+		ps.setInt(1, p. getAuc_id());
+		ps.setInt(2, p. getPlayer_id());
+		ps.setInt(3, p.getTeam_id());
+		ps.setInt(4, p.getAmount());
 		
+		
+		return ps.execute();
 	}
 	
-	public List<Player> getAllPlayers() throws Exception{
-		List<Player> li=new ArrayList<Player>();
+	public List<Auction> getAllAuction() throws Exception{
+		List<Auction> li=new ArrayList<Auction>();
 		Connection mc=MyConnection.getConnection(); // TRanfers control to another 
 		Statement ps=mc.createStatement();
 		ResultSet rs=ps.executeQuery("select * from web_player");
 		//Player p=new Player();
 		while(rs.next()) {
-			li.add(new Player(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+			li.add(new Auction(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4)));
 			
 		}
 		return li;
-
 }
-	
-	
-	
 }

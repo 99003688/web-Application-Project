@@ -8,40 +8,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ltts.demoweb2.configure.MyConnection;
-import com.ltts.demoweb2.model.Player;
+import com.ltts.demoweb2.model.Team;
 
-
-public class PlayerDao {
-	
-	public boolean insertPlayer(Player p) throws Exception {
+public class TeamDao {
+	public boolean insertTeam(Team t) throws Exception {
 		//fill your code
 		Connection mc=MyConnection.getConnection(); // TRanfers control to another 
-		PreparedStatement ps=mc.prepareStatement("insert into web_player values(?,?,?,?)");
-		ps.setInt(1, p.getPlayerId());
-		ps.setString(2, p.getPlayerName());
-		ps.setString(3, p.getCountry());
-		ps.setString(4, p.getsDate1());
-
+		PreparedStatement ps=mc.prepareStatement("insert into web_team values(?,?,?,?,?)");
+		ps.setInt(1, t.getTeamId());
+		ps.setString(2, t.getTeamname());
+		ps.setString(3, t.getOwnerName());
+		ps.setString(4, t.getCoachName());
+		ps.setInt(5, t.getPlayerId());
 		return ps.execute();
 		//return false;
-
-		
-	}
+}
 	
-	public List<Player> getAllPlayers() throws Exception{
-		List<Player> li=new ArrayList<Player>();
+	public List<Team> getAllTeam() throws Exception{
+		List<Team> li=new ArrayList<Team>();
 		Connection mc=MyConnection.getConnection(); // TRanfers control to another 
 		Statement ps=mc.createStatement();
 		ResultSet rs=ps.executeQuery("select * from web_player");
 		//Player p=new Player();
 		while(rs.next()) {
-			li.add(new Player(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+			li.add(new Team(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5)));
 			
 		}
 		return li;
-
 }
-	
-	
-	
 }

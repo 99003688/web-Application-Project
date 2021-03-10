@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Player Registration</title>
+<title>Auction</title>
 <style>
  .myDiv {
         border: 4px outset red;
@@ -28,37 +28,37 @@
 </style>
 </head>
 <body>
-<form action="./InsertPlayerServlet" method="post">
+<form action="./InsertAuctionServlet" method="post">
 
   <div class="myDiv">
-    <h2>Player Details</h2>
+    <h2>Auction Details</h2>
   </div>
   <br>
-  <div class= "myDiv">
+<div class= "myDiv">
   <table margin-left: 30%;>
-       <tr><td><label for ="fid"> Player ID:</label></td>
-      <td><input type="number" name="playerId" autofocus required= required placeholder="Enter your Player Id"></td>
+       <tr><td><label for ="fid"> Auction ID:</label></td>
+      <td><input type="number" name="auc_id" autofocus required= required placeholder="Enter your team Id"></td>
       </tr>
       
-      <tr><td><label for ="fname"> Name:</label></td>
-      <td><input type="text" name="playerName" autofocus required= required placeholder="Enter your name"></td>
+      <tr><td><label for ="fteamname"> Player Id:</label></td>
+      <td><input type="number" name="player_id" autofocus required= required placeholder="Enter your team name"></td>
       </tr>
            
-      <tr><td><label for ="fcountry"> Country:</label></td>
-      <td><input type="text" name="country" autofocus required= required placeholder="Enter your Country"></td>
+      <tr><td><label for ="fownername"> Team Id:</label></td>
+      <td><input type="number" name="team_id" autofocus required= required placeholder="Enter your owner name"></td>
       </tr>
       
-      <tr><td> <label for="date of birth">Birthday:</label></td>
-     <td> <input type="text" id="birthday" name="sDate1" autofocus required= required  placeholder="Enter your Birth-DaTe"></td>
+      <tr><td> <label for="fcoachname ">Amount:</label></td>
+     <td> <input type="number" id="amount" name="amount" autofocus required= required  placeholder="Enter your coach name"></td>
      </tr>
+     
       </table>
       <br>
       <br>
        <div class= "myDiv">
       <tr><td> <input type="submit" value="submit"></td></tr>
       </div>
-      
-   </div>
+       </div>
 </form>
 </body>
 </html>

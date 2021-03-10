@@ -1,7 +1,6 @@
 package com.ltts.demoweb2.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ltts.demoweb2.dao.PlayerDao;
-import com.ltts.demoweb2.model.Player;
+import com.ltts.demoweb2.dao.auctionDao;
+import com.ltts.demoweb2.model.Auction;
+
 
 /**
- * Servlet implementation class InsertPlayerServlet
+ * Servlet implementation class InsertAuctionServlet
  */
-@WebServlet("/InsertPlayerServlet")
-public class InsertPlayerServlet extends HttpServlet {
+@WebServlet("/InsertAuctionServlet")
+public class InsertAuctionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertPlayerServlet() {
+    public InsertAuctionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,31 +42,22 @@ public class InsertPlayerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		PrintWriter out = response.getWriter();  
-		int no=Integer.parseInt(request.getParameter("playerId"));
-		String name=request.getParameter("playerName");
-		String country=request.getParameter("country");
-		String date1=request.getParameter("sDate1");
-		Player p=new Player(no, name, country, date1);
+		int aid=Integer.parseInt(request.getParameter("auc_id"));
+		int pid=Integer.parseInt(request.getParameter("player_id"));
+		int tid=Integer.parseInt(request.getParameter("team_id"));
+		int amt=Integer.parseInt(request.getParameter("amount"));
+		Auction p=new Auction(aid,pid,tid,amt);
 		System.out.println("Inside Servlet: "+p);
-		PlayerDao pd=new PlayerDao();
+		auctionDao pd=new auctionDao();
 		boolean b=false;
-		RequestDispatcher rd=null;
 		try {
-			b=pd.insertPlayer(p); // Control TRanfers to Dao file
+			b=pd.insertAuction(p); // Control TRanfers to Dao file
+			RequestDispatcher rd = request.getRequestDispatcher("");
 			System.out.println("Successfully Inserted...");
-			rd=request.getRequestDispatcher("success.html");
-			rd.forward(request, response);
-			//System.out.println("Successfully Inserted...");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			out.write("Already Player id Used: "+e);
-			rd=request.getRequestDispatcher("addplayer.html");
-			rd.include(request, response);
 			e.printStackTrace();
 		}
-		
 	}
 
-	
 }
