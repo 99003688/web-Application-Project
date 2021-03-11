@@ -29,7 +29,7 @@ public class auctionDao {
 		List<Auction> li=new ArrayList<Auction>();
 		Connection mc=MyConnection.getConnection(); // TRanfers control to another 
 		Statement ps=mc.createStatement();
-		ResultSet rs=ps.executeQuery("select * from web_player");
+		ResultSet rs=ps.executeQuery("select * from auction");
 		//Player p=new Player();
 		while(rs.next()) {
 			li.add(new Auction(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4)));
