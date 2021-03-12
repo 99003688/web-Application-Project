@@ -17,6 +17,12 @@ public class Player {
 	}
 
 
+	public Player() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
+
 	public int getPlayerId() {
 		return playerId;
 	}

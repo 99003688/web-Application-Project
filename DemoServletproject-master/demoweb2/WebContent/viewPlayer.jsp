@@ -30,6 +30,7 @@ for(Player p1:li){
 <td><%=p1.getCountry() %></td>
 <td><%=p1.getsDate1() %>
 
+	<td><a href="updatePlayer.jsp?id=<%=p1.getPlayerId()%>">Update</a></td>
 </tr>
 <%} %>
 </table>

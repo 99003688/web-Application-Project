@@ -41,6 +41,33 @@ public class PlayerDao {
 		return li;
 
 }
+	public Player getAllPlayerById(int id) throws Exception
+	{
+		Player p= new Player();
+		List<Player> li=new ArrayList<Player>();
+		li=getAllPlayers();
+		
+		for(Player p1:li)
+		{
+			if(p1.getPlayerId()==id)
+			{
+				p.setPlayerId(id);
+				p.setPlayerName(p1.getPlayerName());
+				p.setCountry(p1.getCountry());
+			}
+		}
+		return p;
+	}
+	public Boolean updateplayer(int id,String pname,String count) throws Exception
+	{
+		Connection con= MyConnection.getConnection();
+		PreparedStatement ps=con.prepareStatement("UPDATE web_player SET playerName=?,country=? where playerId=?");
+		ps.setString(1,pname);
+		ps.setString(2, count);
+		ps.setInt(3,id);
+		Boolean b=ps.execute();
+		return b;
+	}
 	
 	
 	
