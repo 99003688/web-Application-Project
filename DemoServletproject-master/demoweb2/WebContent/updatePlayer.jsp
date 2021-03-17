@@ -9,9 +9,9 @@
 </head>
 <body>
 <%
-int id =Integer.parseInt(request.getParameter("id"));
+int d =Integer.parseInt(request.getParameter("id"));
 PlayerDao pd=new PlayerDao();
-Player p1=pd.getAllPlayerById(id);
+Player p1=pd.getAllPlayerById(d);
 %>
 <form action="./UpdatePlayerServlet" method="post">
 Player Id:<input type="hidden" name="playerId" value= <%=p1.getPlayerId() %>> <br><br>
